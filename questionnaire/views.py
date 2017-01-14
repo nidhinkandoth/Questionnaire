@@ -16,13 +16,14 @@ def answers(request):
 	questions = Questionnaire.objects.all() #fetches the query set.
 	score = 0 #initially score is zero.
 	for question in questions:
-		#print question.question
 		correct_answer = question.answer #fetches answer given in the model.
-		entered_answer = request.POST.get(question.question) #fetches entered answer by the candidate
+		print correct_answer
+		print question.id
+		entered_answer = request.POST.get(question.id) #fetches entered answer by the candidate
+		print entered_answer
 		if(entered_answer == correct_answer): #checks the entered answer is correct or not
 			score+=1 #if correct score is incremented by one.
-		#print entered_answer
-		#print correct_answer
+		
 		
 	
 	context = {'score':score}
