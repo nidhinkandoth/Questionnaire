@@ -11,22 +11,16 @@ def questionnaire(request):
 	return render(request, 'questionnaire.html', context)
 
 
-@csrf_exempt	
+	
 def answers(request):
 	questions = Questionnaire.objects.all() #fetches the query set.
 	score = 0 #initially score is zero.
 	for question in questions:
 		correct_answer = question.answer #fetches answer given in the model.
-		print correct_answer
-		print question.id
 		entered_answer = request.POST.get(str(question.id)) #fetches entered answer by the candidate
-		print request.POST
-		print entered_answer
 		if(entered_answer == correct_answer): #checks the entered answer is correct or not
 			score+=1 #if correct score is incremented by one.
-		
-		
-	
+
 	context = {'score':score}
 	return render(request, 'answer.html', context)
     
