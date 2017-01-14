@@ -1,0 +1,33 @@
+<html>
+<head>
+</head>
+<header>
+{% load static %}
+  <link rel="stylesheet" type="text/css" href={% static 'questionnaire/questionnaire.css' %}/>
+</header>
+<h1 class = heading> Nick's Technologies</h1>
+<body style="background-color:#0066ff;">
+<div>
+{% block content %}
+{% endblock %}
+</div>
+ <div class = 'questionnaire'>
+    {% csrf_token %}
+    {% for question in questions %}       
+<form action= 'answers/' method = "POST" >
+	<div class = 'question'>Q. {{ question.question }} </div><br>
+<div id= "choices" class='select'>
+    <input type = "radio" name="{{question.question}}" value="{{question.choice_one}}">{{question.choice_one}}<br>
+    <input type = "radio" name="{{question.question}}" value="{{question.choice_two}}">{{question.choice_two}}<br>
+    <input type = "radio" name="{{question.question}}" value="{{question.choice_three}}">{{question.choice_three}}<br>
+    <input type = "radio" name="{{question.question}}" value="{{question.choice_four}}">{{question.choice_four}}<br>
+    <input type = "radio" name="{{question.question}}" value="{{question.choice_five}}">{{question.choice_five}}<br>
+ </div>
+     <br> 
+
+    {% endfor %}
+    <input type="submit" class="submit" id="submit" value="Submit"/>
+    </div>
+ </form>
+     </body>
+</html>
