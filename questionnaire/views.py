@@ -19,7 +19,8 @@ def answers(request):
 		correct_answer = question.answer #fetches answer given in the model.
 		print correct_answer
 		print question.id
-		entered_answer = request.POST.get(question.id) #fetches entered answer by the candidate
+		entered_answer = request.POST.get(str(question.id)) #fetches entered answer by the candidate
+		print request.POST
 		print entered_answer
 		if(entered_answer == correct_answer): #checks the entered answer is correct or not
 			score+=1 #if correct score is incremented by one.
